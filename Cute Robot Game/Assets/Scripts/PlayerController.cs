@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float speed = 5.0f;
     [SerializeField]
     private float turnSpeed = 5.0f;
+    private Robot robot;
     // Start is called before the first frame update
     void Start()
     {
