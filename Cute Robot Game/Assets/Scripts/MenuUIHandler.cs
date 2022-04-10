@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -11,6 +12,10 @@ using UnityEditor;
 [DefaultExecutionOrder(1000)]
 public class MenuUIHandler : MonoBehaviour
 {
+    public GameObject GameOverText;
+    public GameObject RestartButton;
+    public GameObject BackButton;
+    public TextMeshProUGUI healthText;
     public void NewRobotSelected(Robot robot)
     {
         MainManager.Instance.robot = robot;
@@ -32,7 +37,12 @@ public class MenuUIHandler : MonoBehaviour
     }
     public void StartNew()
     {
+        MainManager.Instance.gameOver = false;
         SceneManager.LoadScene(1);
+    }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
     public void SaveRobotClicked()
     {
@@ -41,5 +51,15 @@ public class MenuUIHandler : MonoBehaviour
     public void LoadRobotClicked()
     {
         MainManager.Instance.LoadRobot();
+    }
+    public void DisplayGameOverScreen()
+    {
+        GameOverText.SetActive(true);
+        RestartButton.SetActive(true);
+        BackButton.SetActive(true);
+    }
+    public void UpdateHealth(int health)
+    {
+        healthText.SetText("Health: " + health);
     }
 }

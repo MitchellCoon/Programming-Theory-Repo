@@ -7,7 +7,15 @@ public class FastBoi : Robot
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = 100;
+        speed = 7.5f;
+        turnSpeed = 250.0f;
+        lastFired = 0.0f;
+        canvas = GameObject.Find("Canvas");
+        if(gameObject.CompareTag("Player"))
+        {
+            canvas.GetComponent<MenuUIHandler>().UpdateHealth(health);
+        }
     }
 
     // Update is called once per frame
@@ -16,8 +24,5 @@ public class FastBoi : Robot
         
     }
 
-    private void Attack()
-    {
-        
-    }
+    
 }

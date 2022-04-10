@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    private GameObject player;
+    protected GameObject player;
     private Vector3 playerLocation;
     private Vector3 enemyLocation;
     private float angleToPlayer;
@@ -12,19 +12,19 @@ public class EnemyAI : MonoBehaviour
     private float speed = 50.0f;
     [SerializeField]
     private float turnSpeed = 100.0f;
-    private Robot robot;
+    protected Robot robot;
+    protected float minDistance = 2.0f;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         robot = gameObject.GetComponent<Robot>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(MainManager.Instance.gameOver);
-        if(!MainManager.Instance.gameOver)
+        if(!MainManager.Instance.gameOver && player != null)
         {
             playerLocation = player.transform.position;
             enemyLocation = transform.position;
@@ -39,7 +39,7 @@ public class EnemyAI : MonoBehaviour
             {
                 transform.Rotate(-Vector3.up * turnSpeed * Time.deltaTime);
             }
-            else if (target.magnitude > 2.0f)
+            else if (target.magnitude > minDistance)
             {
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
             }

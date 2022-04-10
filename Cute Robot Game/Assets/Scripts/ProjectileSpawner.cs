@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class ProjectileSpawner : MonoBehaviour
 {
     public float speed = 10.0f;
     public float fireRate = 0.1f;
@@ -19,11 +19,14 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time > lastFired + fireRate)
+        if(!MainManager.Instance.gameOver)
         {
-            lastFired = Time.time;
-            projectileSpawn = transform.position + transform.rotation * projectileOffset;
-            Instantiate(projectile, projectileSpawn, transform.rotation);
+            if(Time.time > lastFired + fireRate)
+            {
+                lastFired = Time.time;
+                projectileSpawn = transform.position + transform.rotation * projectileOffset;
+                Instantiate(projectile, projectileSpawn, transform.rotation);
+            }
         }
     }
 }

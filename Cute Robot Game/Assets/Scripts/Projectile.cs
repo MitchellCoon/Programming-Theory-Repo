@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileSpawner : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     public float speed = 10.0f;
     public float fireRate = 0.5f;
@@ -16,6 +16,10 @@ public class ProjectileSpawner : MonoBehaviour
         
     }
 
+    void Fire()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {

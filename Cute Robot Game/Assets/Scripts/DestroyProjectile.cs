@@ -22,7 +22,9 @@ public class DestroyProjectile : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
-        Debug.Log("hit");
+        if(!other.CompareTag("FastboiProjectile") && !other.CompareTag("EdgelordProjectile"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

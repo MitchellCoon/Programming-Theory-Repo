@@ -13,6 +13,7 @@ public class MainManager : MonoBehaviour
         set{m_GameOver = value;}
     }
     public Robot robot;
+    public GameObject canvas;
     private void Awake()
     {
         if (Instance != null)
@@ -47,5 +48,7 @@ public class MainManager : MonoBehaviour
     public void GameOver()
     {
         m_GameOver = true;
+        canvas = GameObject.Find("Canvas");
+        canvas.GetComponent<MenuUIHandler>().DisplayGameOverScreen();
     }
 }
